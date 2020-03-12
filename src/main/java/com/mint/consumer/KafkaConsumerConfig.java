@@ -1,8 +1,8 @@
 package com.mint.consumer;
 
-import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
 import com.mint.consumer.model.VerifyCardResponse;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class KafkaConsumerConfig {
     @Value("${bootstrap.server.address}")
     private String bootstrapAddress;
 
-    private final String GROUP_ID = "";
+    private final String GROUP_ID = "card_verified";
 
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
@@ -37,7 +37,7 @@ public class KafkaConsumerConfig {
                 StringDeserializer.class);
         props.put(
                 ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
-                VerifyCardResponse.class);
+                StringDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(props);
     }
 

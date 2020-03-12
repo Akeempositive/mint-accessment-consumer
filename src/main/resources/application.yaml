@@ -1,0 +1,10 @@
+server:
+  port: 9001
+
+bootstrap:
+  server:
+    address: localhost:9092
+
+logging:
+  level:
+    root: INFO

@@ -1,12 +1,13 @@
 package com.mint.consumer.model;
 
 import org.apache.kafka.common.header.Headers;
+import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serializer;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class VerifyCardResponse implements Serializer {
+public class VerifyCardResponse implements Deserializer {
 
     private boolean success;
 
@@ -42,13 +43,8 @@ public class VerifyCardResponse implements Serializer {
     }
 
     @Override
-    public byte[] serialize(String s, Object o) {
-        return new byte[0];
-    }
-
-    @Override
-    public byte[] serialize(String topic, Headers headers, Object data) {
-        return new byte[0];
+    public Object deserialize(String s, byte[] bytes) {
+        return null;
     }
 
     @Override
