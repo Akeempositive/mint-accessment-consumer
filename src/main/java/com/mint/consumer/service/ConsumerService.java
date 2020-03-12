@@ -18,9 +18,13 @@ public class ConsumerService {
     public void listenWithHeaders(
             @Payload String received,
             @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) throws JsonProcessingException {
-        VerifyCardResponse verifyCardResponse = objectMapper.readValue(received, VerifyCardResponse.class);
+        VerifyCardResponse verifyCardResponse = getResponseFromJson(received);
         System.out.println(
                 "Received Message: succesful " + received
                         + "from partition: " + partition);
+    }
+
+    public VerifyCardResponse getResponseFromJson(String message) throws JsonProcessingException {
+        return objectMapper.readValue(message, VerifyCardResponse.class);
     }
 }
